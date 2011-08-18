@@ -1,0 +1,23 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Whatever Title{% endblock %}
+
+{% block body %}
+<h1>This is your name</h1>
+
+Hello {{ name }}!
+
+<ul>
+    {% for product in products %}
+				{% if loop.index is odd %}
+        <li class="row_alt">{{ product.name | upper }}</li>
+				{% else %}
+				<li>{{ product.name | upper }}</li>
+				{% endif %}
+    {% else %}
+        <li>No products found</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
+
