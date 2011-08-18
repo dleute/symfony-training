@@ -37,4 +37,17 @@ class DefaultController extends Controller
       return $response;
       // return array('name' => $name);
     }
+    
+    /**
+     * @Route("/showproduct/{id}", name = "showproduct")
+     * @Template()
+     */
+    public function showAction($id)
+    {
+      $repository = $this->getDoctrine()->getRepository('MainBundle:Product');
+      
+      $product = $repository->find($id);
+      
+      return array('product' => $product);
+    }
 }
