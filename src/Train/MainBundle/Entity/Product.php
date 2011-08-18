@@ -3,6 +3,7 @@
 namespace Train\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity
@@ -18,9 +19,16 @@ class Product
     protected $id;
     
     /**
+     * @Gedmo\Sluggable()
      * @ORM\Column(type="string", length=100)
      */
     protected $name;
+
+    /**
+     * @Gedmo\Slug()
+     * @ORM\Column(name="slug", type="string", length=128, unique=true)
+     */
+    protected $slug;
 
     /**
      * @ORM\Column(type="decimal", scale=2)
@@ -100,5 +108,25 @@ class Product
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }
